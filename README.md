@@ -1,6 +1,6 @@
 # BlueWatch: Modular SOC & Threat Detection Lab
 
-> **Status:** In development
+> **Status:** In development. Phase 1 (SOC fundamentals) in progress.
 
 A personal cybersecurity lab focused on threat detection, endpoint monitoring, SOC alert investigation, and incident response.
 
@@ -14,9 +14,10 @@ The goal is not simply to generate alerts, but to investigate suspicious activit
 
 - **Endpoint Monitoring:** Collect Windows endpoint telemetry using Sysmon.
 - **SIEM & Threat Detection:** Centralize and analyze security events using Wazuh.
+- **Network Detection:** Network intrusion detection alerts using Suricata.
 - **SOC Alert Triage:** Investigate and classify alerts as True Positive (TP), False Positive (FP), or Inconclusive.
 - **Threat Hunting:** Search for suspicious activity and correlate related events.
-- **Malware Analysis:** Investigate malware behavior in a controlled, isolated environment.
+- **Malware Analysis:** Static and dynamic analysis in an isolated, disposable sandbox (Phase 4).
 - **IOC Management:** Document hashes, domains, IP addresses, file paths, and other indicators of compromise.
 - **MITRE ATT&CK Mapping:** Map observed activity to documented adversary techniques when supported by evidence.
 - **Incident Response:** Document containment, eradication, recovery, and remediation recommendations.
@@ -73,6 +74,7 @@ The goal is not simply to generate alerts, but to investigate suspicious activit
 |---|---|
 | Wazuh | SIEM, event collection, and alerting |
 | Sysmon | Detailed Windows endpoint telemetry |
+| Suricata | Network intrusion detection, alerts forwarded to Wazuh |
 | Windows / Linux | Laboratory endpoints and infrastructure |
 | MITRE ATT&CK | Adversary tactics and techniques mapping |
 | Python | Auxiliary scripts and automation |
@@ -83,7 +85,7 @@ Additional tools may be introduced as the project evolves.
 
 ## 🧪 Investigation Data Sources
 
-Alert triage and investigation reports in this project are based on SOC simulators: TryHackMe's SOC rooms and Let's Defend. They provide realistic alerts, logs, and case workflows, so the time goes into analysis and reporting instead of building and attacking an environment first. The BlueWatch lab (Wazuh + Sysmon) is used for detection engineering and endpoint telemetry, and every report states whether its evidence comes from the lab or from a simulator.
+Alert triage and investigation reports in this project are based on SOC simulators: TryHackMe's SOC rooms and Let's Defend. They provide realistic alerts, logs, and case workflows, so the time goes into analysis and reporting instead of building and attacking an environment first. The BlueWatch lab (Wazuh + Sysmon + Suricata) is used for detection engineering and endpoint telemetry, and every report states whether its evidence comes from the lab or from a simulator.
 
 All investigation reports and write-ups are published in [`security-writeups`](https://github.com/Botonsolo/security-writeups).
 
@@ -123,10 +125,10 @@ All conclusions should be supported by evidence and documented so that another a
 ## 🗺️ Development Roadmap
 
 ### Phase 1 — SOC Fundamentals
-- [ ] Deploy Wazuh.
-- [ ] Connect a Windows laboratory endpoint.
-- [ ] Install and configure Sysmon.
-- [ ] Validate event collection and visibility.
+- [x] Deploy Wazuh.
+- [x] Install and configure Sysmon.
+- [x] Connect a Windows laboratory endpoint.
+- [x] Validate event collection and visibility (Sysmon events and Suricata alerts indexed in Wazuh).
 - [ ] Implement and test an initial detection rule.
 
 ### Phase 2 — Alert Investigation
@@ -143,9 +145,9 @@ All conclusions should be supported by evidence and documented so that another a
 - [ ] Correlate indicators with laboratory evidence.
 
 ### Phase 4 — Malware Analysis
-- [ ] Design an isolated and disposable analysis environment.
-- [ ] Document network isolation and safety controls.
-- [ ] Analyze behavior and collect relevant artifacts.
+- [x] Design an isolated and disposable analysis environment.
+- [x] Document network isolation and safety controls.
+- [x] Analyze behavior and collect relevant artifacts.
 - [ ] Correlate sandbox findings with SIEM events.
 
 ### Phase 5 — Automation and Documentation
@@ -154,14 +156,6 @@ All conclusions should be supported by evidence and documented so that another a
 - [ ] Publish reproducible investigation cases.
 - [ ] Add verified dashboards and screenshots.
 - [ ] Document implementation decisions and limitations.
-
-## 📂 Repository Structure
-
-- `detections/`: Wazuh rules with a description and test evidence
-- `iocs/`: indicator tables
-- `docs/`: architecture and setup notes
-
-Investigation reports: [`security-writeups`](https://github.com/Botonsolo/security-writeups)
 
 ## 🔐 Security and Responsible Use
 
@@ -176,7 +170,7 @@ Investigation reports: [`security-writeups`](https://github.com/Botonsolo/securi
 
 BlueWatch will be considered demonstrable when it can show:
 
-- [ ] Successful event collection from a laboratory endpoint.
+- [x] Successful event collection from a laboratory endpoint.
 - [ ] A detection rule producing the expected result in a controlled scenario.
 - [ ] A traceable investigation supported by technical evidence (lab or simulator-based, stated in the report).
 - [ ] A justified classification with documented reasoning.
@@ -193,4 +187,4 @@ The project prioritizes reproducibility, evidence-based analysis, technical docu
 
 ## Disclaimer
 
-Lab environment only. Samples are analysed in isolated, disposable machines. No real production data is included.
+Lab environment only. Samples are analyzed in isolated, disposable machines. No real production data is included.
