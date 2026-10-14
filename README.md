@@ -1,37 +1,37 @@
 
 # BlueWatch — Modular SOC & Threat Detection Lab
 
-> **Estado:** Proyecto en desarrollo.  
-> Laboratorio personal de ciberseguridad defensiva orientado a la monitorización, detección de amenazas, investigación de alertas y respuesta a incidentes.
+> **Status:** In development  
+> A personal cybersecurity lab focused on threat detection, endpoint monitoring, SOC alert investigation, and incident response.
 
-## 🎯 Objetivo
+## 🎯 Project Overview
 
-BlueWatch busca construir un entorno modular que permita reproducir el flujo de trabajo de un analista SOC, desde la detección inicial hasta la documentación de las evidencias y las recomendaciones de respuesta.
+BlueWatch aims to build a modular defensive security environment that reproduces the workflow of a Security Operations Center (SOC) analyst, from initial detection to evidence collection, investigation, and remediation recommendations.
 
-El objetivo no es únicamente generar alertas, sino investigar qué ha ocurrido, validar las evidencias y justificar cada conclusión técnica.
+The goal is not simply to generate alerts, but to investigate suspicious activity, validate findings using technical evidence, and justify every analytical conclusion.
 
-## 🛡️ Funcionalidades previstas
+## 🛡️ Planned Features
 
-- **Endpoint Monitoring:** recopilación de eventos de sistemas Windows mediante Sysmon.
-- **SIEM & Threat Detection:** centralización y análisis de eventos con Wazuh.
-- **SOC Alert Triage:** investigación y clasificación de alertas como True Positive (TP), False Positive (FP) o inconclusas.
-- **Threat Hunting:** búsqueda de actividad sospechosa y correlación de eventos.
-- **Malware Analysis:** análisis controlado del comportamiento de muestras en un entorno aislado.
-- **IOC Management:** documentación de hashes, dominios, direcciones IP y otros indicadores.
-- **MITRE ATT&CK:** identificación de técnicas respaldadas por evidencias.
-- **Incident Response:** documentación de contención, erradicación, recuperación y medidas correctivas.
-- **Technical Reporting:** elaboración de informes reproducibles con evidencias y conclusiones.
+- **Endpoint Monitoring:** Collect Windows endpoint telemetry using Sysmon.
+- **SIEM & Threat Detection:** Centralize and analyze security events using Wazuh.
+- **SOC Alert Triage:** Investigate and classify alerts as True Positive (TP), False Positive (FP), or Inconclusive.
+- **Threat Hunting:** Search for suspicious activity and correlate related events.
+- **Malware Analysis:** Investigate malware behavior in a controlled, isolated environment.
+- **IOC Management:** Document hashes, domains, IP addresses, file paths, and other indicators of compromise.
+- **MITRE ATT&CK Mapping:** Map observed activity to documented adversary techniques when supported by evidence.
+- **Incident Response:** Document containment, eradication, recovery, and remediation recommendations.
+- **Technical Reporting:** Produce reproducible investigation reports supported by technical evidence.
 
-> Estas funcionalidades representan los objetivos del proyecto. Cada una se marcará como implementada cuando exista una prueba verificable.
+> These features represent the project's objectives. Each feature will be marked as implemented only after it has been tested and validated.
 
-## 🏗️ Arquitectura propuesta
+## 🏗️ Proposed Architecture
 
 ```text
 ┌──────────────────────────────┐
 │      Windows Endpoints       │
-│          Sysmon              │
+│           Sysmon             │
 └──────────────┬───────────────┘
-               │ Events
+               │ Security Events
                ▼
 ┌──────────────────────────────┐
 │            Wazuh             │
@@ -41,23 +41,23 @@ El objetivo no es únicamente generar alertas, sino investigar qué ha ocurrido,
                │
                ▼
 ┌──────────────────────────────┐
-│        SOC Investigation      │
+│      SOC Investigation       │
 │                              │
-│  Alert Triage                 │
-│  Event Correlation            │
-│  Process Analysis             │
-│  Timeline Reconstruction      │
+│  Alert Triage                │
+│  Event Correlation           │
+│  Process Analysis            │
+│  Timeline Reconstruction     │
 └────────┬─────────────┬───────┘
          │             │
          ▼             ▼
 ┌────────────────┐ ┌────────────────┐
-│ Malware Sandbox│ │ Threat Intel   │
-│ Isolated Lab   │ │ IOC Analysis   │
-└────────┬───────┘ └────────┬───────┘
+│ Malware Sandbox│ │ Threat Intel    │
+│ Isolated Lab   │ │ IOC Analysis    │
+└────────┬───────┘ └────────┬────────┘
          └──────────┬───────┘
                     ▼
 ┌──────────────────────────────┐
-│       Incident Reporting     │
+│      Incident Reporting      │
 │                              │
 │  Evidence & Timeline         │
 │  MITRE ATT&CK Mapping        │
@@ -65,35 +65,35 @@ El objetivo no es únicamente generar alertas, sino investigar qué ha ocurrido,
 └──────────────────────────────┘
 ```
 
-*La arquitectura es una propuesta y se actualizará según avance la implementación.*
+*This is a proposed logical architecture and will be updated as the project develops.*
 
 ## 🧰 Technology Stack
 
 | Technology | Purpose |
 |---|---|
-| Wazuh | SIEM, event collection and alerting |
-| Sysmon | Windows endpoint telemetry |
+| Wazuh | SIEM, event collection, and alerting |
+| Sysmon | Detailed Windows endpoint telemetry |
 | Windows / Linux | Laboratory endpoints and infrastructure |
 | MITRE ATT&CK | Adversary tactics and techniques mapping |
 | Python | Auxiliary scripts and automation |
 | Bash | System administration and automation |
 | Git | Version control and documentation |
 
-Additional tools may be incorporated as the project evolves.
+Additional tools may be introduced as the project evolves.
 
 ## 🔍 SOC Investigation Workflow
 
-Each investigation will follow a documented process:
+Each investigation will follow a structured and documented process:
 
-1. **Detection:** identify an alert or suspicious event.
-2. **Triage:** assess severity, context and initial indicators.
-3. **Evidence Collection:** gather relevant logs, process information and artifacts.
-4. **Correlation:** connect related events and reconstruct the activity timeline.
-5. **Classification:** determine whether the activity is malicious, legitimate or inconclusive.
-6. **IOC Extraction:** document relevant indicators with their source and context.
-7. **MITRE ATT&CK Mapping:** identify supported techniques when evidence allows.
-8. **Response Recommendations:** propose containment, remediation and monitoring actions.
-9. **Reporting:** record findings, evidence, limitations and conclusions.
+1. **Detection:** Identify a security alert or suspicious event.
+2. **Triage:** Assess the severity, context, and initial indicators.
+3. **Evidence Collection:** Gather relevant logs, process information, and artifacts.
+4. **Correlation:** Connect related events and reconstruct the activity timeline.
+5. **Classification:** Determine whether the activity is malicious, legitimate, or inconclusive.
+6. **IOC Extraction:** Document relevant indicators, including their source and context.
+7. **MITRE ATT&CK Mapping:** Identify supported techniques when sufficient evidence is available.
+8. **Response Recommendations:** Propose containment, remediation, and monitoring actions.
+9. **Reporting:** Document findings, evidence, limitations, and conclusions.
 
 ## 📂 Repository Structure
 
@@ -125,28 +125,28 @@ This is the proposed repository structure and may change as components are imple
 
 Each documented case should include:
 
-- Case ID and summary.
-- Date, time and timezone.
+- Case ID and executive summary.
+- Date, time, and timezone.
 - Environment and scope.
 - Original alert and detection source.
 - Relevant evidence and event references.
 - Process relationships and command-line analysis.
-- Timeline of activity.
+- Timeline of observed activity.
 - Technical reasoning and classification.
-- IOCs and confidence.
-- MITRE ATT&CK techniques, where supported.
+- Indicators of compromise (IOCs) and confidence level.
+- MITRE ATT&CK techniques, when supported by evidence.
 - Impact assessment and response recommendations.
 - Limitations and reproduction steps.
 
-Evidence should support the conclusions and allow another analyst to follow the investigation.
+All conclusions should be supported by evidence and documented so that another analyst can follow the investigation.
 
-## 🗺️ Roadmap
+## 🗺️ Development Roadmap
 
 ### Phase 1 — SOC Fundamentals
 - [ ] Deploy Wazuh.
 - [ ] Connect a Windows laboratory endpoint.
 - [ ] Install and configure Sysmon.
-- [ ] Validate event collection.
+- [ ] Validate event collection and visibility.
 - [ ] Implement and test an initial detection rule.
 
 ### Phase 2 — Alert Investigation
@@ -158,7 +158,7 @@ Evidence should support the conclusions and allow another analyst to follow the 
 
 ### Phase 3 — Threat Intelligence
 - [ ] Define a consistent IOC format.
-- [ ] Document indicator sources and confidence.
+- [ ] Document indicator sources and confidence levels.
 - [ ] Map observed activity to MITRE ATT&CK.
 - [ ] Correlate indicators with laboratory evidence.
 
@@ -180,7 +180,7 @@ Evidence should support the conclusions and allow another analyst to follow the 
 - Test only on systems you own or are explicitly authorized to assess.
 - Analyze potentially malicious files only in an isolated, disposable environment.
 - Never expose production systems or personal credentials to malware samples.
-- Do not publish sensitive logs, credentials, tokens or personal information.
+- Do not publish sensitive logs, credentials, tokens, or personal information.
 - Sanitize screenshots and investigation artifacts before publication.
 - Document the limitations of laboratory findings.
 
@@ -191,14 +191,14 @@ BlueWatch will be considered demonstrable when it can show:
 - [ ] Successful event collection from a laboratory endpoint.
 - [ ] A detection rule producing the expected result in a controlled scenario.
 - [ ] A traceable investigation supported by technical evidence.
-- [ ] A justified classification and documented reasoning.
+- [ ] A justified classification with documented reasoning.
 - [ ] Response recommendations linked to the findings.
 - [ ] Reproducible steps that another analyst can follow.
 
 ## 📌 Project Status
 
-BlueWatch is a personal learning and portfolio project focused on **SOC operations, Blue Team, threat detection and DFIR**.
+BlueWatch is a personal cybersecurity learning and portfolio project focused on **SOC Operations, Blue Team, Threat Detection, and Digital Forensics and Incident Response (DFIR)**.
 
-The project prioritizes reproducibility, evidence-based analysis, technical documentation and continuous improvement.
+The project prioritizes reproducibility, evidence-based analysis, technical documentation, and continuous improvement.
 
-> **Transparency note:** planned features must not be described as completed integrations until they have been implemented and validated.
+> **Transparency note:** Planned features must not be described as completed integrations until they have been implemented and validated.
