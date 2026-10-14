@@ -1,8 +1,8 @@
+# BlueWatch: Modular SOC & Threat Detection Lab
 
-# BlueWatch — Modular SOC & Threat Detection Lab
+> **Status:** In development
 
-> **Status:** In development  
-> A personal cybersecurity lab focused on threat detection, endpoint monitoring, SOC alert investigation, and incident response.
+A personal cybersecurity lab focused on threat detection, endpoint monitoring, SOC alert investigation, and incident response.
 
 ## 🎯 Project Overview
 
@@ -51,9 +51,9 @@ The goal is not simply to generate alerts, but to investigate suspicious activit
          │             │
          ▼             ▼
 ┌────────────────┐ ┌────────────────┐
-│ Malware Sandbox│ │ Threat Intel    │
-│ Isolated Lab   │ │ IOC Analysis    │
-└────────┬───────┘ └────────┬────────┘
+│ Malware Sandbox│ │ Threat Intel   │
+│ Isolated Lab   │ │ IOC Analysis   │
+└────────┬───────┘ └────────┬───────┘
          └──────────┬───────┘
                     ▼
 ┌──────────────────────────────┐
@@ -81,6 +81,12 @@ The goal is not simply to generate alerts, but to investigate suspicious activit
 
 Additional tools may be introduced as the project evolves.
 
+## 🧪 Investigation Data Sources
+
+Alert triage and investigation reports in this project are based on SOC simulators: TryHackMe's SOC rooms and Let's Defend. They provide realistic alerts, logs, and case workflows, so the time goes into analysis and reporting instead of building and attacking an environment first. The BlueWatch lab (Wazuh + Sysmon) is used for detection engineering and endpoint telemetry, and every report states whether its evidence comes from the lab or from a simulator.
+
+All investigation reports and write-ups are published in [`security-writeups`](https://github.com/Botonsolo/security-writeups).
+
 ## 🔍 SOC Investigation Workflow
 
 Each investigation will follow a structured and documented process:
@@ -95,39 +101,13 @@ Each investigation will follow a structured and documented process:
 8. **Response Recommendations:** Propose containment, remediation, and monitoring actions.
 9. **Reporting:** Document findings, evidence, limitations, and conclusions.
 
-## 📂 Repository Structure
-
-```text
-BlueWatch/
-├── README.md
-├── docs/
-│   ├── architecture.md
-│   ├── roadmap.md
-│   └── lab-safety.md
-├── detections/
-│   ├── wazuh/
-│   └── sysmon/
-├── cases/
-│   └── CASE-0001-example/
-│       ├── README.md
-│       ├── evidence/
-│       ├── timeline.csv
-│       ├── iocs.csv
-│       └── report.md
-├── scripts/
-├── dashboards/
-└── .gitignore
-```
-
-This is the proposed repository structure and may change as components are implemented.
-
 ## 📊 Investigation Reports
 
 Each documented case should include:
 
 - Case ID and executive summary.
 - Date, time, and timezone.
-- Environment and scope.
+- Environment and scope, including whether the evidence comes from the BlueWatch lab or a SOC simulator.
 - Original alert and detection source.
 - Relevant evidence and event references.
 - Process relationships and command-line analysis.
@@ -138,7 +118,7 @@ Each documented case should include:
 - Impact assessment and response recommendations.
 - Limitations and reproduction steps.
 
-All conclusions should be supported by evidence and documented so that another analyst can follow the investigation.
+All conclusions should be supported by evidence and documented so that another analyst can follow the investigation. Published reports are available in [`security-writeups`](https://github.com/Botonsolo/security-writeups).
 
 ## 🗺️ Development Roadmap
 
@@ -175,6 +155,14 @@ All conclusions should be supported by evidence and documented so that another a
 - [ ] Add verified dashboards and screenshots.
 - [ ] Document implementation decisions and limitations.
 
+## 📂 Repository Structure
+
+- `detections/`: Wazuh rules with a description and test evidence
+- `iocs/`: indicator tables
+- `docs/`: architecture and setup notes
+
+Investigation reports: [`security-writeups`](https://github.com/Botonsolo/security-writeups)
+
 ## 🔐 Security and Responsible Use
 
 - Test only on systems you own or are explicitly authorized to assess.
@@ -190,7 +178,7 @@ BlueWatch will be considered demonstrable when it can show:
 
 - [ ] Successful event collection from a laboratory endpoint.
 - [ ] A detection rule producing the expected result in a controlled scenario.
-- [ ] A traceable investigation supported by technical evidence.
+- [ ] A traceable investigation supported by technical evidence (lab or simulator-based, stated in the report).
 - [ ] A justified classification with documented reasoning.
 - [ ] Response recommendations linked to the findings.
 - [ ] Reproducible steps that another analyst can follow.
@@ -202,3 +190,7 @@ BlueWatch is a personal cybersecurity learning and portfolio project focused on 
 The project prioritizes reproducibility, evidence-based analysis, technical documentation, and continuous improvement.
 
 > **Transparency note:** Planned features must not be described as completed integrations until they have been implemented and validated.
+
+## Disclaimer
+
+Lab environment only. Samples are analysed in isolated, disposable machines. No real production data is included.
